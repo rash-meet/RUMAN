@@ -1,14 +1,166 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    --switches-bg-color: goldenrod;
+    --switches-label-color: white ;
+    --switch-bg-color: white;
+    --switch-text-color: goldenrod ;
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* resize font-size on html and body level. html is required for widths based on rem */
+@media screen and (min-width: 1024px) {
+
+    html,
+    body {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    html,
+    body {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    html,
+    body {
+        font-size: 12px;
+    }
+}
+
 *{
     font-family: 'Open Sans', sans-serif;
     margin: 0;
+    
     /* overflow-x: hidden; */
 }
 
+
+/* a container - decorative, not required */
+.container {
+    /* border: 1px solid plum; */
+    width: 15rem;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1%;
+}
+/* p - decorative, not required */
+p {
+  margin-top:2rem;
+  font-size:0.75rem;
+  text-align:center;
+}
+
+/* container for all of the switch elements 
+    - adjust "width" to fit the content accordingly 
+*/
+.switches-container {
+    width: 10rem;
+    position: relative;
+    display: flex;
+    padding: 0;
+    position: relative;
+    background: var(--switches-bg-color);
+    line-height: 3rem;
+    border-radius: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3rem;
+}
+
+/* input (radio) for toggling. hidden - use labels for clicking on */
+.switches-container input {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+}
+
+/* labels for the input (radio) boxes - something to click on */
+.switches-container label {
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    color: var(--switches-label-color);
+}
+
+/* switch highlighters wrapper (sliding left / right) 
+    - need wrapper to enable the even margins around the highlight box
+*/
+.switch-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 0.15rem;
+    z-index: 3;
+    transition: transform .5s cubic-bezier(.77, 0, .175, 1);
+    /* transition: transform 1s; */
+}
+
+/* switch box highlighter */
+.switch {
+    border-radius: 3rem;
+    background: var(--switch-bg-color);
+    height: 100%;
+}
+
+/* switch box labels
+    - default setup
+    - toggle afterwards based on radio:checked status 
+*/
+.switch div {
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    display: block;
+    color: var(--switch-text-color) ;
+    transition: opacity .2s cubic-bezier(.77, 0, .175, 1) .125s;
+    will-change: opacity;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* slide the switch box from right to left */
+.switches-container input:nth-of-type(1):checked~.switch-wrapper {
+    transform: translateX(0%);
+}
+
+/* slide the switch box from left to right */
+.switches-container input:nth-of-type(2):checked~.switch-wrapper {
+    transform: translateX(100%);
+}
+
+/* toggle the switch box labels - first checkbox:checked - show first switch div */
+.switches-container input:nth-of-type(1):checked~.switch-wrapper .switch div:nth-of-type(1) {
+    opacity: 1;
+}
+
+/* toggle the switch box labels - second checkbox:checked - show second switch div */
+.switches-container input:nth-of-type(2):checked~.switch-wrapper .switch div:nth-of-type(2) {
+    opacity: 1;
+}
+
+
+
 .outerh h1 a{
     text-decoration: none;
-    color: #777777;
+    color: #939090;
     font-size: 1.5rem;
     padding:0 0.3rem;
+    font-weight: bold;
 }
 
 .outerh nav a{
@@ -16,7 +168,8 @@
     color: #939393;
     list-style-type: none;
     margin:1rem;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .outerh nav ul{
@@ -27,7 +180,8 @@
     display: flex;
     justify-content:space-between;
     padding: 0 10% 0 10%;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    background-color:#171f24;
 }
 .home a{
     text-decoration: none;
@@ -378,7 +532,7 @@ footer h5{
     }
 }
 .outerh img{
-    width: 10%;
+    width: 15%;
     height: 10%;
     align-self: center;
 }
@@ -391,9 +545,21 @@ footer h5{
     font: bold 16px sans-serif;
   
     padding: 55px 50px;
-    margin-top: 80px;
+    margin-top: 75px;
+    margin-bottom: 0px;
   }
+  .footer-distributed1 {
+    background-color: #000;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
   
+    padding: 55px 50px;
+    margin-top: 1000px;
+    margin-bottom: 0px;
+  }
   .footer-distributed .footer-left,
   .footer-distributed .footer-center,
   .footer-distributed .footer-right {
@@ -547,4 +713,89 @@ footer h5{
       margin-left: 0;
     }
   }
+
+
+
+
+
+  body{
+    height: 100vh;
+    text-align: center;
+  }
+    /*Trigger Button*/
+  .login-trigger {
+    /* font-weight: bold; */
+    color: #000000;
+    /* background: linear-gradient(to bottom right, #B05574, #F87E7B); */
+    /* padding: 15px 30px;
+    border-radius: 30px;
+    position: relative; 
+    top: 50%; */
+  }
   
+  /*Modal*/
+  h4 {
+    font-weight: bold;
+    color: #000000;
+  }
+  .close {
+    color: #944504;
+    transform: scale(1.2);
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+    background: none;
+    border: none;
+  }
+  .modal-content {
+    font-weight: bold;
+    background: linear-gradient(to bottom right,#fef572,#ecb32c);
+  }
+  .form-control {
+    margin: 1em 0;
+  }
+
+  .form-control:hover, .form-control:focus {
+    box-shadow: none;  
+    border-color: #040303;
+    background: transparent;
+  }
+  .username, .password {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    
+    border-bottom: 2px solid #000000;
+    padding-left: 0;
+    font-weight: normal;
+    background: transparent;  
+  }
+  .form-control::-webkit-input-placeholder {
+    color: #000000;  
+    background: transparent;
+
+  }
+  .form-control:focus::-webkit-input-placeholder {
+    font-weight: bold;
+    color: #000000;
+    background: transparent;
+  }
+  .login {
+    padding: 6px 20px;
+    border-radius: 20px;
+    background: none;
+    border: 2px solid #ecb32c;
+    color: #000000;
+    font-weight: bold;
+    transition: all .5s;
+    margin-top: 1em;
+  }
+  .login:hover {
+    background: #010101;
+    color: #ecb32c;
+  }  
+
+  .close:hover{
+    transform: scale(1.5);
+  }
