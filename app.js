@@ -29,6 +29,12 @@ window.addEventListener('resize', function(){
         }
         // document.body.style.backgroundColor = color;
     }
+
+const myVariableFromBotpress = window.mypayload;
+console.log(myVariableFromBotpress);
+
+
+
   if (document.documentElement.clientWidth < 1200) {
       let x = document.querySelector("h1");
       x.innerHTML = '<a href="/index.html">The Stanford NLP Group</a>';
